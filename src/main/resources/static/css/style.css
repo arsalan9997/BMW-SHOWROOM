@@ -1,0 +1,1026 @@
+/* =====================================================
+   BMW SHOWROOM - MAIN CSS
+   ===================================================== */
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111111;
+    overflow-x: hidden;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    height: 76px;
+    padding: 0 6%;
+    background: #050505;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    display: block;
+}
+.navbar nav {
+    display: flex;
+    gap: 35px;
+}
+
+.navbar nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: #1c69d4;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    height: 620px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 9%;
+
+    background-image: url("../images/bmw-hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.20)
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    color: #ffffff;
+}
+
+.hero-small {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #cccccc;
+    margin-bottom: 18px;
+}
+
+.hero-content h1 {
+    font-size: 64px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero-content > p:not(.hero-small) {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #eeeeee;
+    margin-bottom: 32px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 15px 30px;
+
+    background: #1c69d4;
+    color: #ffffff;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.hero-button:hover {
+    background: #ffffff;
+    color: #111111;
+}
+
+
+/* =====================================================
+   BMW CARS SECTION
+   FULL SCREEN SLIDER
+   ===================================================== */
+
+.cars-section {
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 76px);
+    min-height: 650px;
+
+    padding: 0;
+    background: #000000;
+
+    overflow: hidden;
+}
+
+
+/* ================= SECTION HEADING ================= */
+
+.section-heading {
+    position: absolute;
+
+    top: 65px;
+    left: 6%;
+
+    z-index: 10;
+
+    text-align: left;
+
+    color: #ffffff;
+
+    pointer-events: none;
+}
+
+.section-heading p,
+.section-label {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #dddddd;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: 48px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+
+/* ================= CAR SLIDER ================= */
+
+.car-slider {
+    width: 100%;
+    max-width: none;
+
+    height: 100%;
+
+    margin: 0;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #000000;
+}
+
+
+/* ================= EACH SLIDE ================= */
+
+.car-slide {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(50px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.car-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+
+    z-index: 2;
+}
+
+
+/* =====================================================
+   DARK OVERLAY
+   ===================================================== */
+
+.car-slide::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.82) 0%,
+            rgba(0, 0, 0, 0.58) 30%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.05) 100%
+        );
+}
+
+
+/* ================= CAR IMAGE ================= */
+
+.car-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    display: block;
+
+    z-index: 0;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+
+    transition: transform 1.2s ease;
+}
+
+.car-slide.active .car-image img {
+    transform: scale(1.02);
+}
+
+
+/* =====================================================
+   CAR INFORMATION
+   INFORMATION NOW APPEARS OVER IMAGE
+   ===================================================== */
+
+.car-info {
+    position: relative;
+
+    z-index: 3;
+
+    width: 55%;
+    height: 100%;
+
+    padding: 210px 30px 90px 6%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: #ffffff;
+}
+
+
+/* ================= NUMBER ================= */
+
+.car-number {
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    color: #dddddd;
+
+    margin-bottom: 25px;
+}
+
+
+/* ================= CATEGORY ================= */
+
+.car-category {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #eeeeee;
+
+    margin-bottom: 12px;
+}
+
+
+/* ================= MODEL TITLE ================= */
+
+.car-info h2 {
+    font-size: 58px;
+
+    font-weight: 500;
+
+    color: #ffffff;
+
+    margin-bottom: 20px;
+
+    line-height: 1.05;
+}
+
+
+/* ================= DESCRIPTION ================= */
+
+.car-description {
+    max-width: 570px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #eeeeee;
+
+    margin-bottom: 30px;
+}
+
+
+/* ================= SPECIFICATIONS ================= */
+
+.specifications {
+    display: flex;
+
+    gap: 35px;
+
+    margin-bottom: 35px;
+}
+
+.spec {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.spec strong {
+    font-size: 16px;
+
+    color: #ffffff;
+}
+
+.spec span {
+    font-size: 10px;
+
+    color: #cccccc;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.details-button,
+.test-button {
+    padding: 14px 25px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+/* ================= VIEW DETAILS ================= */
+
+.details-button {
+    border: 1px solid #ffffff;
+
+    background: #ffffff;
+
+    color: #111111;
+}
+
+.details-button:hover {
+    background: #1c69d4;
+
+    border-color: #1c69d4;
+
+    color: #ffffff;
+}
+
+
+/* ================= TEST DRIVE ================= */
+
+.test-button {
+    border: 1px solid #ffffff;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.test-button:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* =====================================================
+   SLIDER ARROWS
+   ===================================================== */
+
+.slider-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition: 0.3s ease;
+}
+
+.slider-arrow:hover {
+    background: #1c69d4;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+.slider-arrow.previous {
+    left: 22px;
+}
+
+.slider-arrow.next {
+    right: 22px;
+}
+
+
+/* =====================================================
+   DOTS
+   ===================================================== */
+
+.slider-dots {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 25px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    z-index: 30;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.dot.active {
+    width: 32px;
+
+    border-radius: 10px;
+
+    background: #1c69d4;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about-section {
+    padding: 100px 30px;
+
+    text-align: center;
+
+    background: #f5f5f5;
+}
+
+.about-content {
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.about-content h2 {
+    font-size: 42px;
+
+    font-weight: 500;
+
+    margin-bottom: 25px;
+}
+
+.about-content > p:last-child {
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #555555;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact-section {
+    padding: 100px 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+}
+
+.contact-section h2 {
+    font-size: 42px;
+
+    font-weight: 500;
+
+    margin-bottom: 45px;
+}
+
+.contact-info {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 90px;
+
+    flex-wrap: wrap;
+}
+
+.contact-info div {
+    min-width: 180px;
+}
+
+.contact-info strong {
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    color: #555555;
+
+    font-size: 15px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 35px;
+
+    background: #050505;
+
+    color: #ffffff;
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+footer p {
+    font-size: 13px;
+
+    color: #999999;
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 950px) {
+
+    .hero {
+        padding-left: 6%;
+    }
+
+    .hero-content h1 {
+        font-size: 52px;
+    }
+
+
+    /* BMW FULL SCREEN */
+
+    .cars-section {
+        height: calc(100vh - 76px);
+
+        min-height: 650px;
+    }
+
+    .section-heading {
+        top: 45px;
+
+        left: 6%;
+    }
+
+    .section-heading h2 {
+        font-size: 40px;
+    }
+
+    .car-slider {
+        height: 100%;
+    }
+
+    .car-slide {
+        display: block;
+    }
+
+    .car-info {
+        width: 70%;
+
+        height: 100%;
+
+        padding:
+            180px
+            40px
+            70px
+            7%;
+    }
+
+    .car-info h2 {
+        font-size: 48px;
+    }
+
+    .car-description {
+        max-width: 500px;
+
+        font-size: 15px;
+    }
+
+    .car-image {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .car-image img {
+        object-fit: cover;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 18px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .navbar nav {
+        gap: 16px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .navbar nav a {
+        font-size: 12px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        height: 550px;
+
+        padding: 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-content > p:not(.hero-small) {
+        font-size: 16px;
+    }
+
+
+    /* BMW SECTION */
+
+    .cars-section {
+        height: calc(100vh - 120px);
+
+        min-height: 700px;
+
+        padding: 0;
+    }
+
+    .section-heading {
+        top: 30px;
+
+        left: 25px;
+
+        right: 25px;
+    }
+
+    .section-heading p,
+    .section-label {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+
+    /* SLIDER */
+
+    .car-slider {
+        height: 100%;
+    }
+
+    .car-slide {
+        height: 100%;
+    }
+
+
+    /* DARKER MOBILE OVERLAY */
+
+    .car-slide::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.60),
+                rgba(0, 0, 0, 0.80)
+            );
+    }
+
+
+    /* IMAGE */
+
+    .car-image {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+
+        height: 100%;
+    }
+
+    .car-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    /* INFO */
+
+    .car-info {
+        position: relative;
+
+        width: 100%;
+
+        height: 100%;
+
+        padding:
+            170px
+            30px
+            70px;
+
+        justify-content: flex-end;
+    }
+
+    .car-number {
+        font-size: 11px;
+
+        margin-bottom: 12px;
+    }
+
+    .car-category {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 8px;
+    }
+
+    .car-info h2 {
+        font-size: 36px;
+
+        margin-bottom: 15px;
+    }
+
+    .car-description {
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* SPECS */
+
+    .specifications {
+        gap: 18px;
+
+        margin-bottom: 20px;
+
+        flex-wrap: wrap;
+    }
+
+    .spec strong {
+        font-size: 13px;
+    }
+
+    .spec span {
+        font-size: 8px;
+    }
+
+
+    /* BUTTONS */
+
+    .details-button,
+    .test-button {
+        padding: 11px 15px;
+
+        font-size: 11px;
+    }
+
+
+    /* ARROWS */
+
+    .slider-arrow {
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+    .slider-arrow.previous {
+        left: 10px;
+    }
+
+    .slider-arrow.next {
+        right: 10px;
+    }
+
+
+    /* DOTS */
+
+    .slider-dots {
+        bottom: 15px;
+
+        gap: 7px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .dot.active {
+        width: 25px;
+    }
+
+
+    /* ABOUT */
+
+    .about-content h2,
+    .contact-section h2 {
+        font-size: 34px;
+    }
+
+
+    /* CONTACT */
+
+    .contact-info {
+        gap: 30px;
+    }
+}

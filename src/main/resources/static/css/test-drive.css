@@ -1,0 +1,764 @@
+/* =====================================================
+   BMW TEST DRIVE - FULL SCREEN DESIGN
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   FULL SCREEN PAGE
+   ===================================================== */
+
+.test-drive-page {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #050505;
+}
+
+
+/* =====================================================
+   BMW LOGO - TOP RIGHT
+   ===================================================== */
+
+.bmw-logo {
+    position: fixed;
+    top: 28px;
+    right: 35px;
+    z-index: 50;
+    width: 72px;
+}
+
+.bmw-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* =====================================================
+   DARK BACKGROUND
+   ===================================================== */
+
+.test-drive-background {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.78) 28%,
+            rgba(0, 0, 0, 0.25) 65%,
+            rgba(0, 0, 0, 0.55) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.test-drive-content {
+    position: relative;
+    z-index: 10;
+
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 70px 7%;
+}
+
+
+/* =====================================================
+   LEFT TEXT
+   ===================================================== */
+
+.test-drive-info {
+    width: 43%;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.test-drive-info h1 {
+    font-size: clamp(45px, 5vw, 78px);
+
+    font-weight: 300;
+
+    line-height: 0.98;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 25px;
+}
+
+.test-drive-info h1 span {
+    font-weight: 700;
+}
+
+.test-drive-info p {
+    max-width: 450px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #d0d0d0;
+
+    margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   MODEL BUTTONS CONTAINER
+   ===================================================== */
+
+.model-options {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    flex-wrap: nowrap;
+
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   MODEL BUTTONS
+   ===================================================== */
+
+.model-option {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 13px 10px;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    color: #fff;
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    letter-spacing: 0.3px;
+
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+
+    backdrop-filter: blur(5px);
+}
+
+.model-option:hover {
+    background: #fff;
+
+    color: #111;
+
+    border-color: #fff;
+
+    transform: translateY(-2px);
+}
+
+.model-option.active {
+    background: #fff;
+
+    color: #111;
+
+    border-color: #fff;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   BOOK BUTTON
+   ===================================================== */
+
+.book-drive-btn {
+    display: inline-block;
+
+    padding: 16px 30px;
+
+    border: 1px solid #fff;
+
+    background: #fff;
+
+    color: #111;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.book-drive-btn:hover {
+    background: transparent;
+
+    color: #fff;
+
+    border-color: #fff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   FULL SCREEN CAR
+   ===================================================== */
+
+.test-drive-car {
+    position: absolute;
+
+    right: -8%;
+
+    bottom: 0;
+
+    width: 72%;
+
+    height: 88%;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.test-drive-car img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 30px 35px rgba(0, 0, 0, 0.8)
+        );
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+    transform: scale(1);
+}
+
+
+/* =====================================================
+   BOOKING PANEL
+   ===================================================== */
+
+.booking-panel {
+    position: fixed;
+
+    top: 0;
+
+    right: -100%;
+
+    width: min(520px, 100%);
+
+    height: 100vh;
+
+    z-index: 100;
+
+    background: #ffffff;
+
+    color: #111;
+
+    padding: 55px 45px 45px;
+
+    overflow-y: auto;
+
+    box-shadow:
+        -20px 0 60px rgba(0, 0, 0, 0.35);
+
+    transition:
+        right 0.5s cubic-bezier(
+            0.77,
+            0,
+            0.175,
+            1
+        );
+}
+
+.booking-panel.active {
+    right: 0;
+}
+
+
+/* =====================================================
+   BOOKING HEADING
+   ===================================================== */
+
+.booking-panel h2 {
+    font-size: 34px;
+
+    font-weight: 400;
+
+    letter-spacing: -1px;
+
+    color: #111;
+
+    margin-bottom: 35px;
+
+    border-bottom: 1px solid #e5e5e5;
+
+    padding-bottom: 20px;
+}
+
+
+/* =====================================================
+   CLOSE BOOKING BUTTON
+   ===================================================== */
+
+/* =====================================================
+   CLOSE BOOKING BUTTON - ALWAYS VISIBLE
+   ===================================================== */
+
+.close-booking {
+    position: fixed;
+
+    top: 22px;
+    right: 25px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #ddd;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #111111;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    transition: all 0.3s ease;
+}
+
+.close-booking:hover {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+
+    transform: rotate(90deg);
+}
+
+/* =====================================================
+   BOOKING FORM LABEL
+   ===================================================== */
+
+.booking-panel label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    color: #555;
+
+    margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   FORM INPUTS
+   ===================================================== */
+
+.booking-panel input,
+.booking-panel select,
+.booking-panel textarea {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #d6d6d6;
+
+    background: #fafafa;
+
+    color: #111;
+
+    margin-bottom: 20px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+.booking-panel input:focus,
+.booking-panel select:focus,
+.booking-panel textarea:focus {
+    border-color: #111;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+.booking-panel textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* =====================================================
+   CHECKBOX
+   ===================================================== */
+
+.booking-panel input[type="checkbox"] {
+    width: auto;
+
+    margin: 0 8px 0 0;
+
+    padding: 0;
+
+    accent-color: #111;
+
+    vertical-align: middle;
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+   ===================================================== */
+
+.booking-submit {
+    width: 100%;
+
+    padding: 16px;
+
+    background: #111;
+
+    color: #fff;
+
+    border: 1px solid #111;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    transition: all 0.3s ease;
+}
+
+.booking-submit:hover {
+    background: #fff;
+
+    color: #111;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =====================================================
+   BOOKING OVERLAY
+   ===================================================== */
+
+.booking-panel::before {
+    content: "";
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: calc(100vw - 520px);
+
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.5s ease;
+
+    z-index: -1;
+}
+
+.booking-panel.active::before {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .test-drive-content {
+        padding: 70px 5%;
+    }
+
+    .test-drive-info {
+        width: 50%;
+    }
+
+    .test-drive-info h1 {
+        font-size: 55px;
+    }
+
+    .model-options {
+        gap: 5px;
+    }
+
+    .model-option {
+        padding: 12px 7px;
+
+        font-size: 11px;
+    }
+
+    .test-drive-car {
+        width: 65%;
+
+        right: -5%;
+    }
+}
+
+
+/* =====================================================
+   MOBILE / TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .test-drive-content {
+        min-height: 100vh;
+
+        padding: 100px 25px 30px;
+
+        display: block;
+    }
+
+    .test-drive-info {
+        width: 100%;
+    }
+
+    .test-drive-info h1 {
+        font-size: 48px;
+    }
+
+    .test-drive-info p {
+        font-size: 14px;
+    }
+
+    .model-options {
+        flex-wrap: wrap;
+
+        width: 100%;
+
+        max-width: 650px;
+    }
+
+    .model-option {
+        flex: 0 0 auto;
+
+        padding: 12px 14px;
+
+        font-size: 11px;
+    }
+
+    .test-drive-car {
+        position: relative;
+
+        right: auto;
+
+        bottom: auto;
+
+        width: 120%;
+
+        height: 45vh;
+
+        margin-left: -10%;
+
+        margin-top: 15px;
+    }
+
+    .test-drive-car img {
+        width: 100%;
+
+        height: 100%;
+    }
+
+    .bmw-logo {
+        top: 20px;
+
+        right: 20px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 500px) {
+
+    .test-drive-info h1 {
+        font-size: 40px;
+    }
+
+    .model-options {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 200px;
+
+        gap: 6px;
+    }
+
+    .model-option {
+        width: 100%;
+
+        flex: none;
+    }
+
+    .test-drive-car {
+        height: 38vh;
+    }
+
+    .booking-panel {
+        padding: 55px 25px 35px;
+    }
+
+    .close-booking {
+        right: 18px;
+    }
+}
+
+/* =====================================================
+   HIDE BMW LOGO WHEN BOOKING PANEL IS OPEN
+   ===================================================== */
+
+body:has(.booking-panel.active) .bmw-logo {
+    display: none;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+   ===================================================== */
+
+/* =====================================================
+   CLOSE BOOKING BUTTON
+   ===================================================== */
+
+.close-booking {
+    position: fixed;
+
+    top: 22px;
+    right: 25px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #ddd;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #111111;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    transition: all 0.3s ease;
+
+    /* Hidden when booking panel is closed */
+    display: none;
+}
+
+
+/* Show X only when booking panel is open */
+
+.booking-panel.active .close-booking {
+    display: flex;
+}
+
+
+.close-booking:hover {
+    background: #111111;
+    color: #ffffff;
+
+    border-color: #111111;
+
+    transform: rotate(90deg);
+}

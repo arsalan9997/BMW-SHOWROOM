@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BMW Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="admin-logo">
+
+            <img src="images/bmw-logo.jpg?v=2"
+                 alt="BMW Logo">
+
+            <div>
+                <strong>BMW</strong>
+                <span>ADMIN PANEL</span>
+            </div>
+
+        </div>
+
+
+        <nav class="admin-menu">
+
+            <a href="#" class="menu-item active">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="#bookings" class="menu-item">
+                <span>📅</span>
+                Bookings
+            </a>
+
+            <a href="#cars" class="menu-item">
+                <span>🚗</span>
+                Cars
+            </a>
+
+            <a href="#enquiries" class="menu-item">
+                <span>✉</span>
+                Enquiries
+            </a>
+
+            <a href="index.html" class="menu-item">
+                <span>🌐</span>
+                View Website
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutButton">
+                ⇥ Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    BMW SHOWROOM
+                </p>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Administrator
+                    </strong>
+
+                    <span>
+                        Showroom Manager
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= DASHBOARD CARDS ================= -->
+
+        <section class="dashboard-cards">
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🚗
+                </div>
+
+                <div>
+
+                    <span>
+                        TOTAL CARS
+                    </span>
+
+                    <h2 id="totalCars">
+                        6
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span>
+                        TOTAL BOOKINGS
+                    </span>
+
+                    <h2 id="totalBookings">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <span>
+                        TOTAL USERS
+                    </span>
+
+                    <h2 id="totalUsers">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ✉
+                </div>
+
+                <div>
+
+                    <span>
+                        ENQUIRIES
+                    </span>
+
+                    <h2 id="totalEnquiries">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= RECENT BOOKINGS ================= -->
+
+        <section id="bookings"
+                 class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        BOOKING MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Recent Test Drive Bookings
+                    </h2>
+
+                </div>
+
+
+                <button id="refreshBookings"
+                        class="refresh-button">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                      <tr>
+
+    <th>ID</th>
+
+    <th>Customer</th>
+
+    <th>Model</th>
+
+    <th>Mobile</th>
+
+    <th>Date</th>
+
+    <th>Time</th>
+
+    <th>Location</th>
+
+    <th>Status</th>
+
+    <th>Action</th>
+
+</tr>
+
+                    </thead>
+
+
+            <tbody id="bookingTableBody">
+
+    <tr>
+
+        <td colspan="9"
+            class="loading">
+
+            Loading bookings...
+
+        </td>
+
+    </tr>
+
+</tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CARS ================= -->
+
+        <section id="cars"
+                 class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        INVENTORY
+                    </span>
+
+                    <h2>
+                        BMW Cars
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="cars-grid">
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw2.jpg"
+                         alt="BMW 2 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 2 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 2 Series
+                        </h3>
+
+                        <p>
+                            Compact luxury performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw3.jpg"
+                         alt="BMW 3 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 3 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 3 Series
+                        </h3>
+
+                        <p>
+                            Sporty luxury sedan
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw4.jpg"
+                         alt="BMW 4 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 4 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 4 Series
+                        </h3>
+
+                        <p>
+                            Dynamic coupe design
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw5.jpg"
+                         alt="BMW 5 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 5 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 5 Series
+                        </h3>
+
+                        <p>
+                            Executive luxury sedan
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw7.jpg"
+                         alt="BMW 7 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 7 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 7 Series
+                        </h3>
+
+                        <p>
+                            Flagship luxury sedan
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-car-card">
+
+                    <img src="images/bmw8.jpg"
+                         alt="BMW 8 Series">
+
+                    <div>
+
+                        <span>
+                            BMW 8 SERIES
+                        </span>
+
+                        <h3>
+                            BMW 8 Series
+                        </h3>
+
+                        <p>
+                            Premium grand tourer
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ENQUIRIES ================= -->
+
+        <section id="enquiries"
+                 class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        CUSTOMER SERVICE
+                    </span>
+
+                    <h2>
+                        Enquiries
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="empty-state">
+
+                <div>
+                    ✉
+                </div>
+
+                <h3>
+                    No enquiries yet
+                </h3>
+
+                <p>
+                    Customer enquiries will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>
