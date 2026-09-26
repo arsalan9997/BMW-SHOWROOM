@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -31,23 +30,53 @@ pipeline {
 
         stage('Start New Container') {
             steps {
-                sh '''
-                docker run -d \
-                  --name bmw-back \
-                  --add-host=host.docker.internal:host-gateway \
-                  -p 8081:8081 \
-                  bmw:v1
-                '''
+                withCredentials([
+                    string(credentialsId: 'DB_URL', variable: 'DB_URL'),
+                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
+                ]) {
+                    sh '''
+                        docker run -d \
+                          --name bmw-back \
+                          --add-host=host.docker.internal:host-gateway \
+                          -p 8081:8081 \
+                          -e DB_URL="$DB_URL" \
+                          -e DB_USER="$DB_USER" \
+                          -e DB_PASSWORD="$DB_PASSWORD" \
+                          bmw:v1
+                    '''
+                }
             }
         }
 
         stage('Health Check') {
             steps {
                 sh '''
-                sleep 15
-                curl -f http://localhost:8081 || exit 1
+                    echo "Waiting for application to start..."
+                    sleep 15
+
+                    echo "Checking application..."
+                    curl -f http://localhost:8081 || exit 1
+
+                    echo "BMW Showroom application is UP!"
                 '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo '======================================'
+            echo ' CI/CD PIPELINE SUCCESSFUL'
+            echo ' BMW Showroom is deployed!'
+            echo '======================================'
+        }
+
+        failure {
+            echo '======================================'
+            echo ' CI/CD PIPELINE FAILED'
+            echo ' Check the Jenkins console logs.'
+            echo '======================================'
         }
     }
 }
